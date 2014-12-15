@@ -4,7 +4,7 @@ require 'type_constraints/meta'
 describe TypeConstraints::Meta do
   describe "#initialize" do
     context "Create new instance" do
-      meta = TypeConstraints::Meta.new(name: :AlwaysTrue, constraint: proc { |v| true })
+      meta = TypeConstraints::Meta.new(name: :AlwaysTrue, constraint: -> v { true })
       it "returns TypeConstraints::Meta Object" do
         expect(meta.class).to eq TypeConstraints::Meta
       end
@@ -12,8 +12,8 @@ describe TypeConstraints::Meta do
   end
 
   describe "#check?" do
-    context "Check string object." do
-      meta = TypeConstraints::Meta.new(name: :AlwaysTrue, constraint: proc { |v| true })
+    context "Without parent Object." do
+      meta = TypeConstraints::Meta.new(name: :AlwaysTrue, constraint: -> v { true })
       it "returns TrueClass Object" do
         result = meta.check?("hogehoge")
         expect(result).to eq true
@@ -21,8 +21,12 @@ describe TypeConstraints::Meta do
     end
 
     context "With parent Object" do
-      parent = TypeConstraints::Meta.new(name: :AlwaysTrue, constraint: proc { |v| false })
-      meta   = TypeConstraints::Meta.new(name: :AlwaysTrue, constraint: proc { |v| true }, parent: parent)
+      parent = TypeConstraints::Meta.new(name: :AlwaysTrue, constraint: -> v { false })
+      meta   = TypeConstraints::Meta.new(
+        name: :AlwaysTrue,
+        constraint: -> v { true },
+        parent: parent
+      )
 
       it "returns TrueClass Object" do
         result = meta.check?("hogehoge")

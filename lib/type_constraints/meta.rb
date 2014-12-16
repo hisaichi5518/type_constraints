@@ -1,11 +1,16 @@
 module TypeConstraints
   class Meta
 
-    attr_accessor :name, :parent, :constraint
+    attr_accessor :name, :parent
     def initialize(args={})
       @name       = args[:name]
       @parent     = args[:parent]
       @constraint = args[:constraint]
+    end
+
+    def constraint(v=nil)
+      @constraint = v if !v.nil?
+      @constraint
     end
 
     def check?(val)

@@ -1,56 +1,19 @@
 require "type_constraints/version"
+require "type_constraints/registry"
+require "type_constraints/meta"
 
 module TypeConstraints
-  def self.get(name)
-    @@types ||= {}
-    @@types[name]
-  end
+  class << self
+    attr_accessor :registry
+    def setup(&code)
+      @registry = Registry.new
+      @registry.instance_eval(&code)
+      @registry
+    end
 
-  def self.set(name, &code)
-    @@types ||= {}
-    @@types[name] = code
-  end
-
-  [
-    :Array,
-    :BasicObject,
-    :Bignum,
-    :Class,
-    :Comparable,
-    :Dir,
-    :Encoding,
-    :Enumerable,
-    :Enumerator,
-    :Exception,
-    :FalseClass,
-    :File,
-    :Fixnum,
-    :Float,
-    :Hash,
-    :Integer,
-    :IO,
-    :Kernel,
-    :MatchData,
-    # :Math,
-    :Method,
-    :Module,
-    :NilClass,
-    :Numeric,
-    :Object,
-    # :Precision,
-    :Proc,
-    :Range,
-    :Regexp,
-    :String,
-    :Symbol,
-    :Time,
-    # :Thread,
-    :TrueClass,
-    :UnboundMethod,
-  ].each do |sym|
-    klass = Object.const_get(sym.to_s)
-    set sym do |val|
-      val.kind_of?(klass)
+    def check?(name, val)
+      return false if registry.metas[name].nil?
+      registry.metas[name].check?(val)
     end
   end
 end

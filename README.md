@@ -1,6 +1,24 @@
 # TypeConstraints
 
-TODO: Write a gem description
+## Usage
+
+```ruby
+require "type_constraints"
+
+TypeConstraints.setup do
+  type :Array do
+    constraint -> v { v.kind_of?(Array) }
+  end
+  subtype :ArrayOfString, :Array do
+    constraint -> v { v.all?() {|v| v.kind_of?(String) } }
+  end
+end
+
+p TypeConstraints.check?(:Array, []) #=> true
+p TypeConstraints.check?(:Array, {}) #=> false
+p TypeConstraints.check?(:ArrayOfString, ["1000", "2000"]) #=> true
+p TypeConstraints.check?(:ArrayOfString, [1000, 2000])     #=> false
+```
 
 ## Installation
 
@@ -17,10 +35,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install type_constraints
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## Contributing
 

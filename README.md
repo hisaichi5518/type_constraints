@@ -12,12 +12,24 @@ TypeConstraints.setup do
   subtype :ArrayOfString, :Array do
     constraint -> v { v.all?() {|v| v.kind_of?(String) } }
   end
+  subtype :ArrayOfHisa, :ArrayOfString do
+    constraint -> v { v.all?() {|v| v === "5518" } }
+  end
 end
 
+
+puts "testing Array"
 p TypeConstraints.check?(:Array, []) #=> true
 p TypeConstraints.check?(:Array, {}) #=> false
+
+puts "testing ArrayOfString"
 p TypeConstraints.check?(:ArrayOfString, ["1000", "2000"]) #=> true
 p TypeConstraints.check?(:ArrayOfString, [1000, 2000])     #=> false
+
+puts "testing ArrayOfHisa"
+p TypeConstraints.check?(:ArrayOfHisa, ["5518"]) #=> true
+p TypeConstraints.check?(:ArrayOfHisa, ["hisa"]) #=> false
+p TypeConstraints.check?(:ArrayOfHisa, [5518])   #=> false
 ```
 
 ## Installation

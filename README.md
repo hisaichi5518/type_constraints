@@ -25,6 +25,7 @@ p TypeConstraints.check?(:Array, {}) #=> false
 puts "testing ArrayOfString"
 p TypeConstraints.check?(:ArrayOfString, ["1000", "2000"]) #=> true
 p TypeConstraints.check?(:ArrayOfString, [1000, 2000])     #=> false
+p TypeConstraints.check?(:ArrayOfString, {})               #=> false
 
 puts "testing ArrayOfHisa"
 p TypeConstraints.check?(:ArrayOfHisa, ["5518"]) #=> true

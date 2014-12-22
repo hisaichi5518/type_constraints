@@ -8,8 +8,7 @@ end
 module TypeConstraints::Type::Default
   DEFAULT_TYPES = {
     BasicObject:   [-> v { v.kind_of?(BasicObject) }],
-    Kernel:        [-> v { v.kind_of?(Object) }, :BasicObject],
-    Object:        [-> v { v.kind_of?(Object) }, :Kernel],
+    Object:        [-> v { v.kind_of?(Object) }, :BasicObject],
     Hash:          [-> v { v.kind_of?(Hash) }, :Object],
     Array:         [-> v { v.kind_of?(Array) }, :Object],
     Method:        [-> v { v.kind_of?(Method) }, :Object],

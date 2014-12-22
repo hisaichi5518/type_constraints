@@ -37,30 +37,29 @@ p TypeConstraints.check?(:ArrayOfHisa, [5518])   #=> false
 
 ```ruby
 BasicObject
-  Kernel
-    Object
-      Hash
-      Array
-      Method
-      UnboundMethod
-      String
-      Symbol
-      Range
-      Exception
-      NilClass
-      TrueClass
-      FalseClass
-      Regexp
-      Time
-      MatchData
-      Proc
-      Module
-        Class
-      Numeric
-        Float
-        Integer
-          Bignum
-          Fixnum
+  Object
+    Hash
+    Array
+    Method
+    UnboundMethod
+    String
+    Symbol
+    Range
+    Exception
+    NilClass
+    TrueClass
+    FalseClass
+    Regexp
+    Time
+    MatchData
+    Proc
+    Module
+      Class
+    Numeric
+      Float
+      Integer
+        Bignum
+        Fixnum
 ```
 
 ## Installation

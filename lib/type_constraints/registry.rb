@@ -18,8 +18,8 @@ module TypeConstraints
     end
 
     # hash_type :Test, :key_name, ...
-    def hash_type(name, *attrs, &code)
-      meta = Meta.new(name: name, parent: metas[:Hash], constraint: -> v { attrs.all?() {|k| v.key?(k) } })
+    def hash_type(name, *keys, &code)
+      meta = Meta.new(name: name, parent: metas[:Hash], constraint: -> v { keys.all?() {|k| v.key?(k)} })
       meta.instance_eval(&code) if code
       metas[name] = meta
     end

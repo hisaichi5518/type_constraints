@@ -17,3 +17,5 @@ module TypeConstraints
     end
   end
 end
+
+require "type_constraints/type/default"

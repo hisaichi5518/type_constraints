@@ -33,6 +33,36 @@ p TypeConstraints.check?(:ArrayOfHisa, ["hisa"]) #=> false
 p TypeConstraints.check?(:ArrayOfHisa, [5518])   #=> false
 ```
 
+## Default Type Constrains
+
+```ruby
+BasicObject
+  Kernel
+    Object
+      Hash
+      Array
+      Method
+      UnboundMethod
+      String
+      Symbol
+      Range
+      Exception
+      NilClass
+      TrueClass
+      FalseClass
+      Regexp
+      Time
+      MatchData
+      Proc
+      Module
+        Class
+      Numeric
+        Float
+        Integer
+          Bignum
+          Fixnum
+```
+
 ## Installation
 
 Add this line to your application's Gemfile:

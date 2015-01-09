@@ -7,7 +7,7 @@ module TypeConstraints
   class << self
     attr_accessor :registry
     def setup(&code)
-      @registry = Registry.new
+      @registry ||= Registry.new
       @registry.instance_eval(&code)
       @registry
     end

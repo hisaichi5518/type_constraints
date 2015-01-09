@@ -65,4 +65,10 @@ describe TypeConstraints do
       expect { TypeConstraints.check!(:Hoge, [100, 200]) }.to raise_error(TypeConstraints::Exceptions::MissingMeta)
     end
   end
+
+  describe "having default types" do
+    it "having :String" do
+      expect(TypeConstraints.check?(:String, "test")).to eq true
+    end
+  end
 end

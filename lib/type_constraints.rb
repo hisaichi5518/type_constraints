@@ -1,6 +1,7 @@
 require "type_constraints/version"
 require "type_constraints/registry"
 require "type_constraints/meta"
+require "type_constraints/exceptions"
 
 module TypeConstraints
   class << self

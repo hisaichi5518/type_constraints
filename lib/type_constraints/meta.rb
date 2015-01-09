@@ -19,5 +19,9 @@ module TypeConstraints
       end
       constraint.call(val)
     end
+
+    def validate!(val)
+      check?(val) or raise Exceptions::Invalid
+    end
   end
 end

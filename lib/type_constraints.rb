@@ -16,6 +16,11 @@ module TypeConstraints
       return false if registry.metas[name].nil?
       registry.metas[name].check?(val)
     end
+
+    def validate!(name, val)
+      raise Exceptions::MissingMeta if registry.metas[name].nil?
+      registry.metas[name].validate!(val)
+    end
   end
 end
 

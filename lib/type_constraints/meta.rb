@@ -20,7 +20,7 @@ module TypeConstraints
       constraint.call(val)
     end
 
-    def check!(val, level=0)
+    def check!(val, level=1)
       check?(val) or raise Exceptions::Invalid, nil, caller(level)
     end
   end

@@ -35,11 +35,11 @@ describe TypeConstraints::Meta do
     end
   end
 
-  describe "#validate!" do
+  describe "#check!" do
     context "Without parent Object." do
       meta = TypeConstraints::Meta.new(name: :AlwaysTrue, constraint: -> v { true })
       it "returns TrueClass Object" do
-        result = meta.validate!("hogehoge")
+        result = meta.check!("hogehoge")
         expect(result).to eq true
       end
     end
@@ -53,7 +53,7 @@ describe TypeConstraints::Meta do
       )
 
       it "returns FalseClass Object" do
-        expect { meta.validate!("hogehoge") }.to raise_error(TypeConstraints::Exceptions::Invalid)
+        expect { meta.check!("hogehoge") }.to raise_error(TypeConstraints::Exceptions::Invalid)
       end
     end
   end

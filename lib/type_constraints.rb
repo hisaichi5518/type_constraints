@@ -18,8 +18,8 @@ module TypeConstraints
     end
 
     def check!(name, val)
-      raise Exceptions::MissingMeta if registry.metas[name].nil?
-      registry.metas[name].check!(val)
+      raise Exceptions::MissingMeta, nil, caller(1) if registry.metas[name].nil?
+      registry.metas[name].check!(val, 2)
     end
   end
 end

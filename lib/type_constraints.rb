@@ -1,7 +1,7 @@
 require "type_constraints/version"
 require "type_constraints/registry"
 require "type_constraints/meta"
-require "type_constraints/exceptions"
+require "type_constraints/errors"
 
 module TypeConstraints
   class << self
@@ -18,7 +18,7 @@ module TypeConstraints
     end
 
     def check!(name, val, level=1)
-      raise Exceptions::MissingMeta, nil, caller(level) if registry.metas[name].nil?
+      raise MissingMetaError, nil, caller(level) if registry.metas[name].nil?
       registry.metas[name].check!(val, level+1)
     end
   end

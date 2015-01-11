@@ -51,18 +51,18 @@ describe TypeConstraints do
       expect(TypeConstraints.check!(:TypeName, [100,101,102])).to eq true
     end
     it "returns exception if passed :TypeName and integer" do
-      expect { TypeConstraints.check!(:TypeName, 10000000000000) }.to raise_error(TypeConstraints::Exceptions::Invalid)
+      expect { TypeConstraints.check!(:TypeName, 10000000000000) }.to raise_error(TypeConstraints::InvalidError)
     end
 
     it "returns true if passed :TypeName2 and Array[string]" do
       expect(TypeConstraints.check!(:TypeName2, ["100", "200"])).to eq true
     end
     it "returns exception if passed :TypeName2 and Array[integer]" do
-      expect { TypeConstraints.check!(:TypeName, 10000000000000) }.to raise_error(TypeConstraints::Exceptions::Invalid)
+      expect { TypeConstraints.check!(:TypeName, 10000000000000) }.to raise_error(TypeConstraints::InvalidError)
     end
 
     it "returns exception if not exists meta" do
-      expect { TypeConstraints.check!(:Hoge, [100, 200]) }.to raise_error(TypeConstraints::Exceptions::MissingMeta)
+      expect { TypeConstraints.check!(:Hoge, [100, 200]) }.to raise_error(TypeConstraints::MissingMetaError)
     end
   end
 

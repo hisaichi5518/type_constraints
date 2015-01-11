@@ -53,7 +53,7 @@ describe TypeConstraints::Meta do
       )
 
       it "returns FalseClass Object" do
-        expect { meta.check!("hogehoge") }.to raise_error(TypeConstraints::Exceptions::Invalid)
+        expect { meta.check!("hogehoge") }.to raise_error(TypeConstraints::InvalidError)
       end
     end
   end

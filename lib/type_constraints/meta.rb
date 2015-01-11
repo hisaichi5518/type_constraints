@@ -21,7 +21,7 @@ module TypeConstraints
     end
 
     def check!(val, level=1)
-      check?(val) or raise Exceptions::Invalid, nil, caller(level)
+      check?(val) or raise InvalidError, nil, caller(level)
     end
   end
 end
